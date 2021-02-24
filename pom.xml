@@ -4,7 +4,35 @@
   <artifactId>oto-google-bigquery</artifactId>
   <version>0.0.1</version>
   <name>oto-bigquery</name>
-  
+  <packaging>jar</packaging>
+
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+  <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <executions>
+          <execution>
+              <phase>package</phase>
+              <goals>
+                  <goal>single</goal>
+              </goals>
+              <configuration>
+                  <archive>
+                  <manifest>
+                      <mainClass>TestTranslate</mainClass>
+                  </manifest>
+                  </archive>
+                  <descriptorRefs>
+                      <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
+              </configuration>
+          </execution>
+      </executions>
+  </plugin>
+  </plugins>
+</build>
 
   <!--  Using libraries-bom to manage versions.
 See https://github.com/GoogleCloudPlatform/cloud-opensource-java/wiki/The-Google-Cloud-Platform-Libraries-BOM -->
@@ -43,7 +71,6 @@ See https://github.com/GoogleCloudPlatform/cloud-opensource-java/wiki/The-Google
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-storage</artifactId>
     </dependency>
-
     <dependency>
       <groupId>com.google.cloud</groupId>
       <artifactId>google-cloud-translate</artifactId>
